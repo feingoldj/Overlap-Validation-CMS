@@ -53,9 +53,9 @@ legend = ROOT.TLegend(.6, .7, .9, .9)
 legend.SetBorderSize(0)
 legend.SetFillStyle(0)
 
-hdefault = plot("HitRes1.root", "MC")
-hpositive = plot("HitResRadial1.root", "MC_posRadial")
-hnegative = plot("HitRes_MC_negRadial.root", "MC_negRadial")
+hdefault = plot("Data.root", "Data")
+hpositive = plot("Data_posRadial.root", "Data_posRadial")
+hnegative = plot("Data_negRadial.root", "Data_negRadial")
 
 hdefault.SetLineColor(2) #red
 hpositive.SetLineColor(4) #blue
@@ -87,7 +87,7 @@ hstack.GetXaxis().SetTitle("hit_{A} - pred_{A} - (hit_{B} - pred_{B}) (#mum)")
 hstack.GetYaxis().SetTitle("number of events")
 hstack.GetXaxis().SetNdivisions(404)
 
-save_as_file_name = "hStack_MC_TIB"
+save_as_file_name = "hStack_Data_TIB"
 
 for ext in "png", "eps", "root", "pdf":
         c.SaveAs("/eos/home-j/jfeingol/www/OverlapAlignmentValidation/Radial/"+save_as_file_name+"." +ext)

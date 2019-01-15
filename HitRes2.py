@@ -9,7 +9,7 @@ def plot(tree_file_name, save_as_file_name):
 
 
     for entry in t:
-        if not ((t.subdetID == 5) and (abs(t.modualZ_[0] - t.modualZ_[1]) < 0.5)):
+        if not ((t.subdetID == 1) and (abs(t.modualZ_[0] - t.modualZ_[1]) < 0.5)):
      
             continue
     
@@ -42,18 +42,22 @@ def plot(tree_file_name, save_as_file_name):
     h.Draw()
     for ext in "png", "eps", "root", "pdf":
         c.SaveAs("/eos/home-j/jfeingol/www/OverlapAlignmentValidation/Radial/"+save_as_file_name+"." +ext)
+
+
+plot("Data_collisions.root","Data_collisions_BPix")
+
 print("Entered data_posRadial")
-plot("HitRes_realData_Radial.root", "data_posRadial")
+#plot("HitRes_realData_Radial.root", "data_posRadial")
 print("Entered data_negRadial")
-plot("HitRes_realData_negRadial.root", "data_negRadial")
+#plot("HitRes_realData_negRadial.root", "data_negRadial")
 print("Entered data")
-plot("HitRes_realData.root", "data")
+#plot("HitRes_realData.root", "data")
 print("Entered MC_Radial")
 #plot("HitResRadial.root","MC_posRadial")
 print("Entered MC")
-plot("HitRes1.root","MC")
+#plot("HitRes1.root","MC")
 print("Entered MC_negRadial")
-plot("HitRes_MC_negRadial.root","MC_negRadial") 
+#plot("HitRes_MC_negRadial.root","MC_negRadial") 
 
 f = ROOT.TFile("HitRes_realData_Radial.root")
 t = f.Get("analysis/Overlaps")
