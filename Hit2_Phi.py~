@@ -1,0 +1,53 @@
+import ROOT
+import math
+
+f = ROOT.TFile("HitRes_realData_Radial.root")
+t = f.Get("analysis/Overlaps")
+c = ROOT.TCanvas()
+
+h = ROOT.TH1F("h", "h", 100, -0.1, 0.1)
+
+for entry in t:
+    #hitPhi0 = math.atan2(t.hitY[0], t.hitX[0])
+    #hitPhi1 = math.atan2(t.hitY[1], t.hitX[1])
+    #predPhi0 = math.atan2(t.predY[0], t.predX[0])
+    #predPhi1 = math.atan2(t.predY[1], t.predX[1])
+    modulePhi0 = math.atan2(t.modualY_[0], t.modualX_[0]) #module was mispelled in creating the root file.    
+    modulePhi1 = math.atan2(t.modualY_[1], t.modualX_[1])
+    
+    #print("-------------")
+    #print(hitPhi0)
+    #print(hitPhi1)
+    #print(predPhi0)
+    #print(predPhi1)
+    #print(modulePhi0)
+    #print(modulePhi1)
+    #print("-------------")
+
+    if modulePhi0 > modulePhi1:
+        hitXA = t.hitX[1]
+        hitXB = t.hitX[0]
+        predXA = t.predX[1]
+        predXB = t.predX[0]
+    else:
+        hitXA = t.hitX[0]
+        hitXB = t.hitX[1]
+        predXA = t.predX[0]
+        predXB = t.predX[1]
+    
+    #moduleR0 = math.sqrt(t.modualX_[0]**2 + t.modualY_[0]**2)
+    #moduleR1 = math.sqrt(t.modualX_[1]**2 + t.modualY_[1]**2)
+    #r = 0.5*(moduleR0 + moduleR1)
+    #print("this is r")
+    #print(r)
+    #print("this is delta phi")
+    #print((hitPhiA - predPhiA - (hitPhiB - predPhiB)))
+
+    h.Fill((hitXA - predXA - (hitXB - predXB)))
+
+h.Draw()
+
+for ext in "png", "eps", "root", "pdf":
+    c.SaveAs("/eos/home-j/jfeingol/www/OverlapAlignmentValidation/realData_posRadial_Hits2_Phi_2."+ext)
+
+
