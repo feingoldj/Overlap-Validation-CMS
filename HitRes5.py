@@ -14,7 +14,7 @@ def plot(tree_file_name, hist_name):
         if not ((t.subdetID == 1) and (abs(t.modualZ_[0] - t.modualZ_[1]) < 0.5)):
             
             continue
-        print("flag")
+ 
         modulePhi0 = math.atan2(t.modualY_[0], t.modualX_[0]) #module was mispelled in creating the root file.   
         modulePhi1 = math.atan2(t.modualY_[1], t.modualX_[1])
         
@@ -53,9 +53,12 @@ legend = ROOT.TLegend(.6, .7, .9, .9)
 legend.SetBorderSize(0)
 legend.SetFillStyle(0)
 
-hdefault = plot("Data.root", "Data")
-hpositive = plot("Data_posRadial.root", "Data_posRadial")
-hnegative = plot("Data_negRadial.root", "Data_negRadial")
+print("Entering MC")
+hdefault = plot("MC_collisions.root", "MC")
+print("Entering MC posRadial")
+hpositive = plot("MC_collisions_posRadial.root", "MC_posRadial")
+print("Entering MC negRadial")
+hnegative = plot("MC_collisions_negRadial.root", "MC_negRadial")
 
 hdefault.SetLineColor(2) #red
 hpositive.SetLineColor(4) #blue
@@ -87,24 +90,10 @@ hstack.GetXaxis().SetTitle("hit_{A} - pred_{A} - (hit_{B} - pred_{B}) (#mum)")
 hstack.GetYaxis().SetTitle("number of events")
 hstack.GetXaxis().SetNdivisions(404)
 
-save_as_file_name = "hStack_Data_BPix"
+save_as_file_name = "hStack_MC_BPix1"
 
 for ext in "png", "eps", "root", "pdf":
         c.SaveAs("/eos/home-j/jfeingol/www/OverlapAlignmentValidation/Radial/"+save_as_file_name+"." +ext)
 
-
-
-#print("Entered data_posRadial")
-#plot("HitRes_realData_Radial.root", "data_posRadial")
-#print("Entered data_negRadial")
-#plot("HitRes_realData_negRadial.root", "data_negRadial")
-#print("Entered data")
-#plot("HitRes_realData.root", "data")
-#print("Entered MC_Radial")
-#plot("HitResRadial.root","MC_posRadial")
-#print("Entered MC")
-#plot("HitRes1.root","MC")
-#print("Entered MC_negRadial")
-#plot("HitRes_MC_negRadial.root","MC_negRadial") 
 
 

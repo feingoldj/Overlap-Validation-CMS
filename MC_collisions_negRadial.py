@@ -33,7 +33,8 @@ process.source = cms.Source("PoolSource",
 "/store/mc/RunIISpring18DRPremix/QCD_Pt_120to170_TuneCP5_13TeV_pythia8/ALCARECO/TkAlMinBias-TkAlMinBias_100X_upgrade2018_realistic_v10-v1/70000/143C48E6-2A67-E811-98E7-FA163EB0C6EB.root",
 "/store/mc/RunIISpring18DRPremix/QCD_Pt_120to170_TuneCP5_13TeV_pythia8/ALCARECO/TkAlMinBias-TkAlMinBias_100X_upgrade2018_realistic_v10-v1/70000/A06F2E0A-4867-E811-9D0B-FA163EAFB5E2.root",
 "/store/mc/RunIISpring18DRPremix/QCD_Pt_120to170_TuneCP5_13TeV_pythia8/ALCARECO/TkAlMinBias-TkAlMinBias_100X_upgrade2018_realistic_v10-v1/70000/B02DEFF2-2A67-E811-A386-FA163E7494EC.root",
-
+"/store/mc/RunIISpring18DRPremix/QCD_Pt_120to170_TuneCP5_13TeV_pythia8/ALCARECO/TkAlMinBias-TkAlMinBias_100X_upgrade2018_realistic_v10-v1/70000/824CE3EF-2A67-E811-B037-FA163E12D4CD.root",
+"/store/mc/RunIISpring18DRPremix/QCD_Pt_120to170_TuneCP5_13TeV_pythia8/ALCARECO/TkAlMinBias-TkAlMinBias_100X_upgrade2018_realistic_v10-v1/70000/A6165DD7-1267-E811-80BA-FA163EFE26E6.root",
     )
 )
 
@@ -49,12 +50,12 @@ process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 process.GlobalTag.globaltag = '100X_upgrade2018_design_IdealBS_v8'
 #process.load("Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff")
 
-#process.GlobalTag.toGet = cms.VPSet(
- #   cms.PSet(record = cms.string('TrackerAlignmentRcd'),
-  #           tag = cms.string('Alignments'),
-   #          connect = cms.string('sqlite_file:radialTest.db')
-   # ),
-#)
+process.GlobalTag.toGet = cms.VPSet(
+    cms.PSet(record = cms.string('TrackerAlignmentRcd'),
+             tag = cms.string('Alignments'),
+             connect = cms.string('sqlite_file:/afs/cern.ch/user/j/jfeingol/commonValidation/jfeingold/weakModes/CMSSW_10_1_7/Alignment/TrackerAlignment/test/MC_negRadial.db')
+    ),
+)
 
 
 #Geometry
@@ -102,7 +103,7 @@ process.seqTrackselRefit = trackselRefit.getSequence(process, 'ALCARECOTkAlMinBi
 
 
 process.TFileService = cms.Service("TFileService",
-    fileName = cms.string('MC_collisions.root')
+    fileName = cms.string('MC_collisions_negRadial.root')
 )
 
 process.analysis = cms.EDAnalyzer("HitRes",
