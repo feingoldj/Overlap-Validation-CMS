@@ -11,7 +11,9 @@ process.maxEvents = cms.untracked.PSet(
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
 # pointing skim
-'/store/mc/RunIISpring18CosmicDR/TKCosmics_38T/ALCARECO/TkAlCosmics0T-DECO_100X_mc2017cosmics_realistic_deco_v3-v1/30000/0287153A-753B-E811-9DDA-0CC47A4DEDFE.root'
+
+
+
     )
 )
 
@@ -27,12 +29,12 @@ process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 process.GlobalTag.globaltag = '100X_upgrade2018_design_IdealBS_v8'
 #process.load("Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff")
 
-process.GlobalTag.toGet = cms.VPSet(
-    cms.PSet(record = cms.string('TrackerAlignmentRcd'),
-             tag = cms.string('Alignments'),
-             connect = cms.string('sqlite_file:/afs/cern.ch/user/j/jfeingol/commonValidation/jfeingold/weakModes/test/MC_negRadial_BPIX.db')
-    ),
-)
+#process.GlobalTag.toGet = cms.VPSet(
+ #   cms.PSet(record = cms.string('TrackerAlignmentRcd'),
+  #           tag = cms.string('Alignments'),
+   #          connect = cms.string('sqlite_file:radialTest.db')
+   # ),
+#)
 
 
 #Geometry
@@ -80,7 +82,7 @@ process.seqTrackselRefit = trackselRefit.getSequence(process, 'ALCARECOTkAlCosmi
 
 
 process.TFileService = cms.Service("TFileService",
-    fileName = cms.string('MC_negRadial_BPIX.root')
+    fileName = cms.string('HitRes1.root')
 )
 
 process.analysis = cms.EDAnalyzer("HitRes",

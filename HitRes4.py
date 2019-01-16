@@ -11,7 +11,7 @@ def plot(tree_file_name, hist_name):
     h.SetDirectory(0)
 
     for entry in t:
-        if not ((t.subdetID == 3) and (abs(t.modualZ_[0] - t.modualZ_[1]) < 0.5)):
+        if not ((t.subdetID == 5) and (abs(t.modualZ_[0] - t.modualZ_[1]) < 0.5)):
             print("flag")
             continue
     
@@ -87,7 +87,7 @@ hstack.GetXaxis().SetTitle("hit_{A} - pred_{A} - (hit_{B} - pred_{B}) (#mum)")
 hstack.GetYaxis().SetTitle("number of events")
 hstack.GetXaxis().SetNdivisions(404)
 
-save_as_file_name = "hStack_Data_TIB"
+save_as_file_name = "hStack_Data_TOB"
 
 for ext in "png", "eps", "root", "pdf":
         c.SaveAs("/eos/home-j/jfeingol/www/OverlapAlignmentValidation/Radial/"+save_as_file_name+"." +ext)

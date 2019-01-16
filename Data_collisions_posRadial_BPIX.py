@@ -69,7 +69,7 @@ process.GlobalTag.globaltag = '102X_dataRun2_TkAlSummerCamp_SG_v4'
 process.GlobalTag.toGet = cms.VPSet(
     cms.PSet(record = cms.string('TrackerAlignmentRcd'),
              tag = cms.string('Alignments'),
-             connect = cms.string('sqlite_file:/afs/cern.ch/user/j/jfeingol/commonValidation/jfeingold/weakModes/CMSSW_10_1_7/Alignment/TrackerAlignment/test/Data_negRadial_BPIX.db'),
+             connect = cms.string('sqlite_file:/afs/cern.ch/user/j/jfeingol/commonValidation/jfeingold/weakModes/CMSSW_10_1_7/Alignment/TrackerAlignment/test/Data_posRadial_BPIX.db'),
     ),
     cms.PSet(record = cms.string('SiPixelTemplateDBObjectRcd'),
              tag = cms.string('SiPixelTemplateDBObject_38T_TempForAlignmentReReco2018_v3'),
@@ -123,7 +123,7 @@ process.seqTrackselRefit = trackselRefit.getSequence(process, 'ALCARECOTkAlMinBi
 
 
 process.TFileService = cms.Service("TFileService",
-    fileName = cms.string('Data_collisions_BPIX.root')
+    fileName = cms.string('Data_collisions_posRadial_BPIX.root')
 )
 
 process.analysis = cms.EDAnalyzer("HitRes",
